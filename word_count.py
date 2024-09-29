@@ -1,5 +1,6 @@
 import sys
 import re
+import os
 
 # Binary Search Tree Implementation in Python
 class BinarySearchTree:
@@ -48,12 +49,16 @@ def main():
     else:
         # Prompt the user for the file name if no command-line argument is provided
         file_name = input("Enter the filename: ")
+        
+    #This modifys the file path to ensure its in the same directory as the script the __file__ gives a path to the current running script file
+    script_dir = os.path.dirname(__file__)
+    file_path = os.path.join(script_dir, file_name)
 
     # Initialize BinarySearchTree
     bst = BinarySearchTree()
     
     try:
-        with open(file_name, 'r') as file:
+        with open(file_path, 'r') as file: #changed to constructed path
             word_count = 0
             for line in file:
                 # Clean up and split words using regex, removing non-alphabetic characters
